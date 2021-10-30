@@ -7,7 +7,7 @@ from pytgcalls.types.input_stream import AudioImagePiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import MediumQualityVideo
 
 from database.chat_sql import add_chat
-from lib.helpers.decorators import blacklist_users
+from lib.helpers.decorators import sudo_users
 from lib.helpers.filters import public_filters
 from lib.tg_stream import call_py
 
@@ -15,7 +15,7 @@ from .join import opengc
 
 
 @Client.on_message(filters.command("play") & public_filters)
-@blacklist_users
+@sudo_users
 async def play_video(client, message):
     flags = " ".join(message.command[1:])
     replied = message.reply_to_message
