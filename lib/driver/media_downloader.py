@@ -4,7 +4,7 @@ import wget
 from pyrogram import Client, filters
 from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
-from lib.helpers.decorators import blacklist_users
+from lib.helpers.decorators import sudo_users
 from pytgcalls.exceptions import NoActiveGroupCall
 
 from .join import opengc
@@ -21,7 +21,7 @@ ydl_opts = {
 
 
 @Client.on_message(filters.command("video"))
-@blacklist_users
+@sudo_users
 async def video(client, message):
     query = " ".join(message.command[1:])
     try:
@@ -59,7 +59,7 @@ async def video(client, message):
 
 
 @Client.on_message(filters.command("music"))
-@blacklist_users
+@sudo_users
 async def music(client, message):
     user_mention = message.from_user.mention
     input = message.text.split(None, 2)[1:]
