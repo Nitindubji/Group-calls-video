@@ -43,7 +43,7 @@ async def repo(client, message):
 
 
 @Client.on_message(filters.command("pause"))
-@blacklist_users
+@sudo_users
 async def pause(client, message):
     query = " ".join(message.command[1:])
     if query == "channel":
@@ -60,7 +60,7 @@ async def pause(client, message):
 
 
 @Client.on_message(filters.command("resume"))
-@blacklist_users
+@sudo_users
 async def resume(client, message):
     query = " ".join(message.command[1:])
     if query == "channel":
@@ -77,7 +77,7 @@ async def resume(client, message):
 
 
 @Client.on_message(filters.command("stop"))
-@blacklist_users
+@sudo_users
 async def stopped(client, message):
     query = " ".join(message.command[1:])
     user_id = message.from_user.id
