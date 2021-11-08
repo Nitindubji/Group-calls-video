@@ -1,5 +1,4 @@
 import os
-
 import wget
 import ytthumb
 from pyrogram import Client, filters
