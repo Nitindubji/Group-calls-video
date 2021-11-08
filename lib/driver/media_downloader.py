@@ -35,12 +35,9 @@ async def video(client, message):
     except Exception as e:
         print(e)
     try:
-        video = message.text
+        video = reaults[0]
         quality = "sd"
-        thumbnail = ytthumb.thumbnail(
-        video=video,
-        quality=quality
-        )
+        thumbnail = ytthumb.thumbnail(video)
     except Exception as e: 
         print(e)
         msg = await message.reply_photo(photo=thumbnail)
