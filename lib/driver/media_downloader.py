@@ -1,6 +1,7 @@
 import os
 
 import wget
+import ytthumb
 from pyrogram import Client, filters
 from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
@@ -33,6 +34,16 @@ async def video(client, message):
         results[0]["url_suffix"]
     except Exception as e:
         print(e)
+    try:
+        video = message.text
+            quality = "sd"
+        thumbnail = ytthumb.thumbnail(
+            video=video,
+            quality=quality
+            )
+    except Exception as e: 
+        print(e)
+        msg = await message.reply_photo(photo=thumbnail)
     try:
         msg = await message.reply("```Downloading...```")
         with YoutubeDL(ydl_opts) as ytdl:
