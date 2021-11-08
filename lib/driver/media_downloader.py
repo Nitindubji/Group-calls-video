@@ -28,13 +28,13 @@ async def video(client, message):
         results = YoutubeSearch(query, max_results=1).to_dict()
         link = f"https://youtube.com{results[0]['url_suffix']}"
         title = results[0]["title"][:40]
-        thumbnail = results[0]["thumbnails"][0]
+        thumbnhail = results[0]["thumbnails"][0]
         duration = results[0]["duration"]
         results[0]["url_suffix"]
     except Exception as e:
         print(e)
     try:
-        video = reaults[0]
+        video = results[0]
         quality = "sd"
         thumbnail = ytthumb.thumbnail(video)
     except Exception as e: 
