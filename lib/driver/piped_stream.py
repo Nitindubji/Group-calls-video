@@ -1,4 +1,4 @@
-
+import ytthumb
 import pafy
 from pyrogram import Client, filters
 from pytgcalls import StreamType
@@ -39,6 +39,14 @@ async def play_video(client, message):
         except BaseException:
             pass
         try:
+            video = message.text
+            quality = "sd"
+            thumbnail = ytthumb.thumbnail(
+            video=video
+            )
+        except Exception as e:
+            await msg.edit("Er {e}")
+        try:
             msg = await message.reply("```Processing...```")
             video = pafy.new(input)
             file_source = video.getbest().url
@@ -52,7 +60,9 @@ async def play_video(client, message):
             await msg.edit("**No active call!**\n```Starting Group call...```")
             await opengc(client, message)
             await pstream(chat_id, file_source)
-        await msg.edit(f"**Streamed by: {user}**\n**Title:** ```{title}```")
+        await msg.reply_photo(
+            photo= thumbnail,
+            caption= f"**Streamed by: {user}**\n**Title:** ```{title}```")
     elif replied.video or replied.document:
         flags = " ".join(message.command[1:])
         chat_id = int(
